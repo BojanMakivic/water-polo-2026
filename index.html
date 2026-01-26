@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 European Water Polo Championship Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.3em;
+            opacity: 0.9;
+        }
+
+        .medals {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .medal {
+            text-align: center;
+        }
+
+        .medal-icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .medal-text {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .content {
+            padding: 60px 40px;
+        }
+
+        .nav-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .nav-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            border: 3px solid transparent;
+        }
+
+        .nav-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+            border-color: #667eea;
+        }
+
+        .nav-card.tournament {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .nav-card.players {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .card-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .card-description {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .footer {
+            background: #f5f5f5;
+            padding: 30px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2em; }
+            .nav-cards { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤽 2026 European Water Polo Championship</h1>
+            <p>Belgrade, Serbia • January 10-25, 2026</p>
+            <div class="medals">
+                <div class="medal">
+                    <div class="medal-icon">🥇</div>
+                    <div class="medal-text">Serbia</div>
+                </div>
+                <div class="medal">
+                    <div class="medal-icon">🥈</div>
+                    <div class="medal-text">Hungary</div>
+                </div>
+                <div class="medal">
+                    <div class="medal-icon">🥉</div>
+                    <div class="medal-text">Greece</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2 style="text-align: center; margin-bottom: 40px; color: #2a5298; font-size: 2em;">
+                Explore Championship Statistics
+            </h2>
+            <div class="nav-cards">
+                <a href="tournament.html" class="nav-card tournament">
+                    <div class="card-icon">🏆</div>
+                    <div class="card-title">Tournament Results</div>
+                    <div class="card-description">
+                        View all match results from preliminary rounds to finals. 
+                        Interactive schedule with 60+ matches across all stages.
+                    </div>
+                </a>
+
+                <a href="players.html" class="nav-card players">
+                    <div class="card-icon">⭐</div>
+                    <div class="card-title">Top Players</div>
+                    <div class="card-description">
+                        Discover tournament MVP, top scorers, best goalkeepers, 
+                        and all-star team selections.
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>37th European Water Polo Championship</strong></p>
+            <p style="margin-top: 10px;">Hosted in Belgrade for the 3rd time (2006, 2016, 2026)</p>
+            <p style="margin-top: 10px; opacity: 0.7;">Serbia's 9th Championship Title • Greece's First Medal</p>
+        </div>
+    </div>
+</body>
+</html>

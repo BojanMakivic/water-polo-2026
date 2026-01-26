@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 European Water Polo Championship - Belgrade</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .nav-bar {
+            background: #1e3c72;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .nav-link:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .nav-link.active {
+            background: #667eea;
+        }
+
+        .nav-home {
+            color: white;
+            font-size: 1.5em;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .medals {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .medal {
+            text-align: center;
+            padding: 15px 25px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .medal:hover {
+            transform: translateY(-5px);
+        }
+
+        .medal-icon {
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+
+        .tabs {
+            display: flex;
+            background: #f5f5f5;
+            border-bottom: 2px solid #ddd;
+            overflow-x: auto;
+        }
+
+        .tab {
+            padding: 20px 30px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: 1em;
+            font-weight: 600;
+            color: #666;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .tab:hover {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .tab.active {
+            background: white;
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .content {
+            padding: 40px;
+            display: none;
+        }
+
+        .content.active {
+            display: block;
+        }
+
+        .groups-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .group {
+            background: #f9f9f9;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .group-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #2a5298;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .match {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-left: 4px solid transparent;
+        }
+
+        .match:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            border-left-color: #667eea;
+        }
+
+        .match-date {
+            font-size: 0.85em;
+            color: #999;
+            margin-bottom: 8px;
+        }
+
+        .match-teams {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .team {
+            flex: 1;
+            padding: 5px;
+        }
+
+        .team.winner {
+            color: #2a5298;
+            font-weight: bold;
+        }
+
+        .score {
+            font-size: 1.5em;
+            color: #667eea;
+            padding: 0 15px;
+            font-weight: bold;
+        }
+
+        .knockout-container {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .knockout-round {
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .round-title {
+            text-align: center;
+            font-size: 2em;
+            font-weight: bold;
+            color: #2a5298;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+        }
+
+        .knockout-matches {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .final-match {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 2em;
+            cursor: pointer;
+            color: #999;
+            background: none;
+            border: none;
+        }
+
+        .close-modal:hover {
+            color: #333;
+        }
+
+        .modal-match-info {
+            text-align: center;
+        }
+
+        .modal-teams {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 30px 0;
+            font-size: 1.5em;
+        }
+
+        .modal-team {
+            flex: 1;
+            text-align: center;
+        }
+
+        .modal-team.winner {
+            color: #2a5298;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .modal-score {
+            font-size: 3em;
+            color: #667eea;
+            font-weight: bold;
+            padding: 0 30px;
+        }
+
+        .match-details {
+            background: #f9f9f9;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #666;
+        }
+
+        .standings-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .standings-table th {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .standings-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .standings-table tr:hover {
+            background: #f5f5f5;
+        }
+
+        .position {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #2a5298;
+        }
+
+        .gold { color: #FFD700; }
+        .silver { color: #C0C0C0; }
+        .bronze { color: #CD7F32; }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.8em; }
+            .medals { flex-direction: column; gap: 15px; }
+            .groups-container { grid-template-columns: 1fr; }
+            .modal-content { padding: 20px; }
+            .modal-teams { flex-direction: column; gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav-bar">
+            <a href="index.html" class="nav-home">🤽 Championship Hub</a>
+            <div class="nav-links">
+                <a href="tournament.html" class="nav-link active">🏆 Tournament</a>
+                <a href="players.html" class="nav-link">⭐ Players</a>
+            </div>
+        </div>
+        <div class="header">
+            <h1>🤽 2026 European Water Polo Championship</h1>
+            <p>Belgrade, Serbia • January 10-25, 2026</p>
+            <div class="medals">
+                <div class="medal">
+                    <div class="medal-icon">🥇</div>
+                    <div>Serbia</div>
+                </div>
+                <div class="medal">
+                    <div class="medal-icon">🥈</div>
+                    <div>Hungary</div>
+                </div>
+                <div class="medal">
+                    <div class="medal-icon">🥉</div>
+                    <div>Greece</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('preliminary')">Preliminary Round</button>
+            <button class="tab" onclick="showTab('main')">Main Round</button>
+            <button class="tab" onclick="showTab('classification')">Classification</button>
+            <button class="tab" onclick="showTab('knockout')">Semifinals & Finals</button>
+            <button class="tab" onclick="showTab('standings')">Final Standings</button>
+        </div>
+
+        <div id="preliminary" class="content active">
+            <div class="groups-container">
+                <div class="group">
+                    <div class="group-title">Group A</div>
+                    <div class="match" onclick="showMatchDetails('Jan 10', 'France', 'Hungary', 7, 15, 'Group A', 'Preliminary Round')">
+                        <div class="match-date">January 10</div>
+                        <div class="match-teams">
+                            <div class="team">France</div>
+                            <div class="score">7 - 15</div>
+                            <div class="team winner">Hungary</div>
+                        </div>
+                    </div>
+                    <div class="match" onclick="showMatchDetails('Jan 10', 'Malta', 'Montenegro', 12, 21, 'Group A', 'Preliminary Round')">
+                        <div class="match-date">January 10</div>
+                        <div class="match-teams">
+                            <div class="team">Malta</div>
+                            <div class="score">12 - 21</div>
+                            <div class="team winner">Montenegro</div>
+                        </div>
+                    </div>
+                    <div class="match" onclick="showMatchDetails('Jan 12', 'Malta', 'France', 13, 22, 'Group A', 'Preliminary Round')">
+                        <div class="match-date">January 12</div>
+                        <div class="match-teams">
+                            <div class="team">Malta</div>
+                            <div class="score">13 - 22</div>
+                            <div class="team winner">France</div>
+                        </div>
+                    </div>
+                    <div class="match" onclick="showMatchDetails('Jan 12', 'Hungary', 'Montenegro', 13, 10, 'Group A', 'Preliminary Round')">
+                        <div class="match-date">January 12</div>
+                        <div class="match-teams">
+                            <div class="team winner">Hungary</div>
+                            <div class="score">13 - 10</div>
+                            <div class="team">Montenegro</div>
+                        </div>
+                    </div>
+                    <div class="match" onclick="showMatchDetails('Jan 14', 'Malta', 'Hungary', 6, 21, 'Group A', 'Preliminary Round')">
+                        <div class="match-date">January 14</div>
+                        <div class="match-teams">
+                            <div class="team">Malta</div>
+                            <div class="score">6 - 21</div>
+                            <div class="team winner">Hungary</div>
+                        </div>
+                    </div>
+                    <div class="match" onclick="showMatchDetails('Jan 14', 'France', 'Montenegro', 12, 13, 'Group A', 'Preliminary Round')">
+                        <div class="match-date">January 14</div>
+                        <div class="match-teams">
+                            <div class="team">France</div>
+                            <div class="score">12 - 13</div>
+                            <div class="team winner">Montenegro</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group">
+                    <div class="group-title">Group B</div>
+                    <div class="match" onclick="showMatchDetails('Jan 11', 'Slovenia', 'Croatia', 4, 20, 'Group B', 'Preliminary Round')">
+                        <div class="match-date">January 11</div>
+                        <div class="match-teams">
+                            <div class="team">Slovenia</div>
+                            <div class="score">4 - 20</div>
+                            <div class="team winner">Croatia</div>
+                        </div>
+                    </div>
+                    <div class="match" onclick="showMatchDetails('Jan 11', 'Greece', 'Georgia', 20, 6, 'Group B', 'Preliminary Round')">
+                        <div class="match-date">January 11</div>
+                        <div class="match-teams">
+                            <div class="team winner">Greece</div>
+                            <div class="score">20 - 6</div>
+                            <div class="team">Georgia</div>
+                        </div>
+                    </div>
+                    <div class="match" onclick="showMatchDetails('Jan 13', 'Georgia', 'Croatia', 7, 18, 'Group B', 'Preliminary Round')">
+                        <div class="match-date">January 13</div>
+                        <div class="match-teams">
+                            <div class="team">Georgia</div>
+                            <div class="score">7 - 18</div>
+                            <div class="team winner">Croatia</div>
+                        </div>
+                    </div>
+                    <div class="match" onclick="showMatchDetails('Jan 13', 'Slovenia', 'Greece', 8, 23, 'Group B', 'Preliminary Round')">
+                        <div class="match-date">January 13</div>
+                        <div class="match-teams">
+                            <div class="team">Slovenia</div>
+                            <div class="score">8 - 23</div>
+                            <div class="team winner">Greece</div>
+                        </div>
+                    </div>
+                    <div class="match" onclick="showMatchDetails('Jan 15', 'Slovenia', 'Georgia', 11, 22, 'Group B', 'Preliminary Round')">
+                        <div class="match-date">January 15</div>
+                        <div class="match-teams">
+                            <div class="team">Slovenia</div>
+                            <div class="score">11 - 22</div>
+                            <div class="team winner">Georgia</div>
+                        </div>
+                    </div>
+                    <div class="match" onclick="showMatchDetails('Jan 15', 'Greece', 'Croatia', 11, 10, 'Group B', 'Preliminary Round')">
+                        <div class="match-date">January 15</div>
+                        <div class="match-teams">
+                            <div class="team winner">Greece</div>
+                            <div class="score">11 - 10</div>
+                            <div class="team">Croatia</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group">
+                    <div class="group-title">Group C</div>
+                    <div class="match" onclick="showMatchDetails('Jan 10', 'Israel', 'Spain', 3, 28, 'Group C', 'Preliminary Round')">
+                        <div class="match-date">January 10</div>
+                        <div class="match-teams">
+                            <div class="team">Israel</div>
+                            <div class="score">3 - 28</div>
+                            <div class="team winner">Spain</div>
+                        </div>
+                    </div>
+                    <div class="match" onclick="showMatchDetails('Jan 10', 'Netherlands', 'Serbia', 13, 13, 'Group C', 'Preliminary Round (Serbia won PSO 5-3)')">
+                        <div class="match-date">January 10</div>
+                        <div class="match-teams">
+                            <div class="team">Netherlands</div>
+                            <div class="score">13 - 13</div>
+                            <div class="team winner">Serbia (PSO)</div>
+                        </div>
+                    </div>
+                    <div class="match" onclick="showMatchDetails('Jan 12', 'Netherlands', 'Israel', 19, 11, 'Group C', 'Preliminary Round')">
+                        <div class="match-date">January 12</div>
+                        <div class="match-teams">
+                            <div class="team winner">Netherlands</div>
+                            <div class="score">19 - 11</div>
+                            <div class="team">Israel</div>
+                        </div>
+                    </div>
+                    <div class="match" onclick="showMatchDetails('Jan 12', 'Spain', 'Serbia', 11, 12, 'Group C', 'Preliminary Round')">
+                        <div class="match-date">January 12</div>
+                        <div class="match-teams">
+                            <div class="team">Spain</div>
+                            <div class="score">11 - 12</div>
+                            <div class="team winner">Serbia</div>
+                        </div>
+                    </div>
+                    <div class="match" onclick="showMatchDetails('Jan 14', 'Netherlands', 'Spain', 7, 14, 'Group C', 'Preliminary Round')">
+                        <div class="match-date">January 14</div>
+                        <div class="match-teams">
+                            <div class="team">Netherlands</div>
+                            <div class="score">7 - 14</div>
+                            <div class="team winner">Spain</div>
+                        </div>
+                    </div>
+                    <div class="match" onclick="showMatchDetails('Jan 14', 'Israel', 'Serbia', 9, 19, 'Group C', 'Preliminary Round')">
+                        <div class="match-date">January 14</div>
+                        <div class="match-teams">
+                            <div class="team">Israel</div>
+                            <div class="score">9 - 19</div>
+                            <div class="team winner">Serbia</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group">
+                    <div class="group-title">Group D</div>
+                    <div class="match" onclick="showMatchDetails('Jan 11', 'Turkey', 'Italy', 8, 19, 'Group D', 'Preliminary Round')">
+                        <div class="match-date">January 11</div>
+                        <div class="match-teams">
+                            <div class="team">Turkey</div>
+                            <div class="score">8 - 19</div>
+                            <div class="team winner">Italy</div>
+                        </div>
+                    </div>
+                    <div class="match" onclick="showMatchDetails('Jan 11', 'Romania', 'Slovakia', 16, 8, 'Group D', 'Preliminary Round')">
+                        <div class="match-date">January 11</div>
+                        <div class="match-teams">
+                            <div class="team winner">Romania</div>
+                            <div class="score">16 - 8</div>
+                            <div class="team">Slovakia</div>
+                        </div>
+                    </div>
+                    <div class="match" onclick="showMatchDetails('Jan 13', 'Slovakia', 'Italy', 12, 17, 'Group D', 'Preliminary Round')">
+                        <div class="match-date">January 13</div>
+                        <div class="match-teams">
+                            <div class="team">Slovakia</div>
+                            <div class="score">12 - 17</div>
+                            <div class="team winner">Italy</div>
+                        </div>
+                    </div>
+                    <div class="match" onclick="showMatchDetails('Jan 13', 'Romania', 'Turkey', 20, 19, 'Group D', 'Preliminary Round')">
+                        <div class="match-date">January 13</div>
+                        <div class="match-teams">
+                            <div class="team winner">Romania</div>
+                            <div class="score">20 - 19</div>
+                            <div class="team">Turkey</div>
+                        </div>
+                    </div>
+                    <div class="match" onclick="showMatchDetails('Jan 15', 'Turkey', 'Slovakia', 17, 16, 'Group D', 'Preliminary Round')">
+                        <div class="match-date">January 15</div>
+                        <div class="match-teams">
+                            <div class="team winner">Turkey</div>
+                            <div class="score">17 - 16</div>
+                            <div class="team">Slovakia</div>
+                        </div>
+                    </div>
+                    <div class="match" onclick="showMatchDetails('Jan 15', 'Romania', 'Italy', 6, 20, 'Group D', 'Preliminary Round')">
+                        <div class="match-date">January 15</div>
+                        <div class="match-teams">
+                            <div class="team">Romania</div>
+                            <div class="score">6 - 20</div>
+                            <div class="team winner">Italy</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="main" class="content">
+            <div class="groups-container">
+                <div class="group">
+                    <div class="group-title">Group E (Main Round)</div>
+                    <div class="match" onclick="showMatchDetails('Jan 16', 'Montenegro', 'Spain', 6, 14, 'Group E', 'Main Round')">
+                        <div class="match-date">January 16</div>
+                        <div class="match-teams">
+                            <div class="team">Montenegro</div>
+                            <div class="score">6 - 14</div>
+                            <div class="team winner">Spain</div>
+                        </div>
+                    </div>
+                    <div class="match" onclick="showMatchDetails('Jan 16', 'Hungary', 'Netherlands', 16, 11, 'Group E', 'Main Round')">
+                        <div class="match-date">January 16</div>
+                        <div class="match-teams">
+                            <div class="team winner">Hungary</div>
+                            <div class="score">16 - 11</div>
+                            <div class="team">Netherlands</div>
+                        </div>
+                    </div>
+                    <div class="match" onclick="showMatchDetails('Jan 16', 'France', 'Serbia', 10, 14, 'Group E', 'Main Round')">
+                        <div class="match-date">January 16</div>
+                        <div class="match-teams">
+                            <div class="team">France</div>
+                            <div class="score">10 - 14</div>
+                            <div class="team winner">Serbia</div>
+                        </div>
+                    </div>
+                    <div class="match" onclick="showMatchDetails('Jan 18', 'France', 'Spain', 8, 14, 'Group E', 'Main Round')">
+                        <div class="match-date">January 18</div>
+                        <div class="match-teams">
+                            <div class="team">France</div>
+                            <div class="score">8 - 14</div>
+                            <div class="team winner">Spain</div>
+                        </div>
+                    </div>
+                    <div class="match" onclick="showMatchDetails('Jan 18', 'Montenegro', 'Netherlands', 15, 11, 'Group E', 'Main Round')">
+                        <div class="match-date">January 18</div>
+                        <div class="match-teams">
+                            <div class="team winner">Montenegro</div>
+                            <div class="score">15 - 11</div>
+                            <div class="team">Netherlands</div>
+                        </div>
+                    </div>
+                    <div class="match" onclick="showMatchDetails('Jan 18', 'Hungary', 'Serbia', 14, 15, 'Group E', 'Main Round')">
+                        <div class="match-date">January 18</div>
+                        <div class="match-teams">
+                            <div class="team">Hungary</div>
+                            <div class="score">14 - 15</div>
+                            <div class="team winner">Serbia</div>
+                        </div>
+                    </div>
+                    <div class="match" onclick="showMatchDetails('Jan 20', 'Netherlands', 'France', 10, 14, 'Group E', 'Main Round')">
+                        <div class="match-date">January 20</div>
+                        <div class="match-teams">
+                            <div class="team">Netherlands</div>
+                            <div class="score">10 - 14</div>
+                            <div class="team winner">France</div>
+                        </div>
+                    </div>
+                    <div class="match" onclick="showMatchDetails('Jan 20', 'Spain', 'Hungary', 11, 11, 'Group E', 'Main Round (Hungary won PSO 4-3)')">
+                        <div class="match-date">January 20</div>
+                        <div class="match-teams">
+                            <div class="team">Spain</div>
+                            <div class="score">11 - 11</div>
+                            <div class="team winner">Hungary (PSO)</div>
+                        </div>
+                    </div>
+                    <div class="match" onclick="showMatchDetails('Jan 20', 'Serbia', 'Montenegro', 13, 15, 'Group E', 'Main Round')">
+                        <div class="match-date">January 20</div>
+                        <div class="match-teams">
+                            <div class="team">Serbia</div>
+                            <div class="score">13 - 15</div>
+                            <div class="team winner">Montenegro</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group">
+                    <div class="group-title">Group F (Main Round)</div>
+                    <div class="match" onclick="showMatchDetails('Jan 17', 'Georgia', 'Italy', 14, 16, 'Group F', 'Main Round')">
+                        <div class="match-date">January 17</div>
+                        <div class="match-teams">
+                            <div class="team">Georgia</div>
+                            <div class="score">14 - 16</div>
+                            <div class="team winner">Italy</div>
+                        </div>
+                    </div>
+                    <div class="match" onclick="showMatchDetails('Jan 17', 'Greece', 'Turkey', 20, 8, 'Group F', 'Main Round')">
+                        <div class="match-date">January 17</div>
+                        <div class="match-teams">
+                            <div class="team winner">Greece</div>
+                            <div class="score">20 - 8</div>
+                            <div class="team">Turkey</div>
+                        </div>
+                    </div>
+                    <div class="match" onclick="showMatchDetails('Jan 17', 'Croatia', 'Romania', 17, 9, 'Group F', 'Main Round')">
+                        <div class="match-date">January 17</div>
+                        <div class="match-teams">
+                            <div class="team winner">Croatia</div>
+                            <div class="score">17 - 9</div>
+                            <div class="team">Romania</div>
+                        </div>
+                    </div>
+                    <div class="match" onclick="showMatchDetails('Jan 19', 'Georgia', 'Romania', 10, 15, 'Group F', 'Main Round')">
+                        <div class="match-date">January 19</div>
+                        <div class="match-teams">
+                            <div class="team">Georgia</div>
+                            <div class="score">10 - 15</div>
+                            <div class="team winner">Romania</div>
+                        </div>
+                    </div>
+                    <div class="match" onclick="showMatchDetails('Jan 19', 'Greece', 'Italy', 15, 13, 'Group F', 'Main Round')">
+                        <div class="match-date">January 19</div>
+                        <div class="match-teams">
+                            <div class="team winner">Greece</div>
+                            <div class="score">15 - 13</div>
+                            <div class="team">Italy</div>
+                        </div>
+                    </div>
+                    <div class="match" onclick="showMatchDetails('Jan 19', 'Croatia', 'Turkey', 22, 9, 'Group F', 'Main Round')">
+                        <div class="match-date">January 19</div>
+                        <div class="match-teams">
+                            <div class="team winner">Croatia</div>
+                            <div class="score">22 - 9</div>
+                            <div class="team">Turkey</div>
+                        </div>
+                    </div>
+                    <div class="match" onclick="showMatchDetails('Jan 21', 'Turkey', 'Georgia', 11, 14, 'Group F', 'Main Round')">
+                        <div class="match-date">January 21</div>
+                        <div class="match-teams">
+                            <div class="team">Turkey</div>
+                            <div class="score">11 - 14</div>
+                            <div class="team winner">Georgia</div>
+                        </div>
+                    </div>
+                    <div class="match" onclick="showMatchDetails('Jan 21', 'Italy', 'Croatia', 13, 10, 'Group F', 'Main Round')">
+                        <div class="match-date">January 21</div>
+                        <div class="match-teams">
+                            <div class="team winner">Italy</div>
+                            <div class="score">13 - 10</div>
+                            <div class="team">Croatia</div>
+                        </div>
+                    </div>
+                    <div class="match" onclick="showMatchDetails('Jan 21', 'Romania', 'Greece', 9, 18, 'Group F', 'Main Round')">
+                        <div class="match-date">January 21</div>
+                        <div class="match-teams">
+                            <div class="team">Romania</div>
+                            <div class="score">9 - 18</div>
+                            <div class="team winner">Greece</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="classification" class="content">
+            <div class="knockout-container">
+                <div class="knockout-round">
+                    <div class="round-title">Classification Matches (5th-12th Place)</div>
+                    <div class="knockout-matches">
+                        <div class="match" onclick="showMatchDetails('Jan 22', 'Netherlands', 'Turkey', 25, 8, '11th Place', 'Classification')">
+                            <div class="match-date">January 22 - 11th Place</div>
+                            <div class="match-teams">
+                                <div class="team winner">Netherlands</div>
+                                <div class="score">25 - 8</div>
+                                <div class="team">Turkey</div>
+                            </div>
+                        </div>
+                        <div class="match" onclick="showMatchDetails('Jan 22', 'France', 'Georgia', 16, 13, '9th Place', 'Classification')">
+                            <div class="match-date">January 22 - 9th Place</div>
+                            <div class="match-teams">
+                                <div class="team winner">France</div>
+                                <div class="score">16 - 13</div>
+                                <div class="team">Georgia</div>
+                            </div>
+                        </div>
+                        <div class="match" onclick="showMatchDetails('Jan 22', 'Montenegro', 'Romania', 21, 15, '7th Place', 'Classification')">
+                            <div class="match-date">January 22 - 7th Place</div>
+                            <div class="match-teams">
+                                <div class="team winner">Montenegro</div>
+                                <div class="score">21 - 15</div>
+                                <div class="team">Romania</div>
+                            </div>
+                        </div>
+                        <div class="match" onclick="showMatchDetails('Jan 22', 'Spain', 'Croatia', 17, 9, '5th Place', 'Classification')">
+                            <div class="match-date">January 22 - 5th Place</div>
+                            <div class="match-teams">
+                                <div class="team winner">Spain</div>
+                                <div class="score">17 - 9</div>
+                                <div class="team">Croatia</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="knockout-round">
+                    <div class="round-title">13th-16th Place Classification</div>
+                    <div class="knockout-matches">
+                        <div class="match" onclick="showMatchDetails('Jan 16', 'Malta', 'Israel', 15, 14, '13th-16th Classification', 'Classification Round')">
+                            <div class="match-date">January 16</div>
+                            <div class="match-teams">
+                                <div class="team winner">Malta</div>
+                                <div class="score">15 - 14</div>
+                                <div class="team">Israel</div>
+                            </div>
+                        </div>
+                        <div class="match" onclick="showMatchDetails('Jan 16', 'Slovenia', 'Slovakia', 10, 10, '13th-16th Classification', 'Classification Round (Slovenia won PSO 4-3)')">
+                            <div class="match-date">January 16</div>
+                            <div class="match-teams">
+                                <div class="team">Slovenia</div>
+                                <div class="score">10 - 10</div>
+                                <div class="team winner">Slovakia (PSO)</div>
+                            </div>
+                        </div>
+                        <div class="match" onclick="showMatchDetails('Jan 18', 'Malta', 'Slovenia', 14, 13, '13th Place', 'Classification')">
+                            <div class="match-date">January 18 - 13th Place</div>
+                            <div class="match-teams">
+                                <div class="team winner">Malta</div>
+                                <div class="score">14 - 13</div>
+                                <div class="team">Slovenia</div>
+                            </div>
+                        </div>
+                        <div class="match" onclick="showMatchDetails('Jan 18', 'Slovakia', 'Israel', 11, 8, '15th Place', 'Classification')">
+                            <div class="match-date">January 18 - 15th Place</div>
+                            <div class="match-teams">
+                                <div class="team winner">Slovakia</div>
+                                <div class="score">11 - 8</div>
+                                <div class="team">Israel</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="knockout" class="content">
+            <div class="knockout-container">
+                <div class="knockout-round">
+                    <div class="round-title">Semifinals</div>
+                    <div class="knockout-matches">
+                        <div class="match" onclick="showMatchDetails('Jan 23', 'Greece', 'Hungary', 12, 15, 'Semifinal', 'Knockout Stage')">
+                            <div class="match-date">January 23</div>
+                            <div class="match-teams">
+                                <div class="team">Greece</div>
+                                <div class="score">12 - 15</div>
+                                <div class="team winner">Hungary</div>
+                            </div>
+                        </div>
+                        <div class="match" onclick="showMatchDetails('Jan 23', 'Serbia', 'Italy', 17, 13, 'Semifinal', 'Knockout Stage')">
+                            <div class="match-date">January 23</div>
+                            <div class="match-teams">
+                                <div class="team winner">Serbia</div>
+                                <div class="score">17 - 13</div>
+                                <div class="team">Italy</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="knockout-round">
+                    <div class="round-title">🥉 Bronze Medal Match</div>
+                    <div class="final-match">
+                        <div class="match" onclick="showMatchDetails('Jan 25', 'Italy', 'Greece', 5, 12, 'Bronze Medal Match', 'Greece wins first ever European Championship medal!')">
+                            <div class="match-date">January 25</div>
+                            <div class="match-teams">
+                                <div class="team">Italy</div>
+                                <div class="score">5 - 12</div>
+                                <div class="team winner">🥉 Greece</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="knockout-round">
+                    <div class="round-title">🏆 FINAL</div>
+                    <div class="final-match">
+                        <div class="match" onclick="showMatchDetails('Jan 25', 'Serbia', 'Hungary', 10, 7, 'FINAL', 'Serbia wins 9th European Championship title!')">
+                            <div class="match-date">January 25</div>
+                            <div class="match-teams">
+                                <div class="team winner">🥇 Serbia</div>
+                                <div class="score">10 - 7</div>
+                                <div class="team">🥈 Hungary</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="standings" class="content">
+            <h2 style="text-align: center; margin-bottom: 30px; color: #2a5298;">Final Tournament Standings</h2>
+            <table class="standings-table">
+                <thead>
+                    <tr>
+                        <th>Position</th>
+                        <th>Team</th>
+                        <th>Medal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="position gold">1</td>
+                        <td><strong>Serbia</strong></td>
+                        <td class="gold">🥇 Gold</td>
+                    </tr>
+                    <tr>
+                        <td class="position silver">2</td>
+                        <td><strong>Hungary</strong></td>
+                        <td class="silver">🥈 Silver</td>
+                    </tr>
+                    <tr>
+                        <td class="position bronze">3</td>
+                        <td><strong>Greece</strong></td>
+                        <td class="bronze">🥉 Bronze (First ever European Championship medal!)</td>
+                    </tr>
+                    <tr><td class="position">4</td><td>Italy</td><td>-</td></tr>
+                    <tr><td class="position">5</td><td>Spain</td><td>-</td></tr>
+                    <tr><td class="position">6</td><td>Croatia</td><td>-</td></tr>
+                    <tr><td class="position">7</td><td>Montenegro</td><td>-</td></tr>
+                    <tr><td class="position">8</td><td>Romania</td><td>-</td></tr>
+                    <tr><td class="position">9</td><td>France</td><td>-</td></tr>
+                    <tr><td class="position">10</td><td>Georgia</td><td>-</td></tr>
+                    <tr><td class="position">11</td><td>Netherlands</td><td>-</td></tr>
+                    <tr><td class="position">12</td><td>Turkey</td><td>-</td></tr>
+                    <tr><td class="position">13</td><td>Malta</td><td>-</td></tr>
+                    <tr><td class="position">14</td><td>Slovakia</td><td>-</td></tr>
+                    <tr><td class="position">15</td><td>Slovenia</td><td>-</td></tr>
+                    <tr><td class="position">16</td><td>Israel</td><td>-</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="modal" class="modal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="close-modal" onclick="closeModal()">&times;</button>
+            <div class="modal-match-info">
+                <h2 id="modal-stage"></h2>
+                <p id="modal-date" style="color: #999; margin-top: 5px;"></p>
+                <div class="modal-teams">
+                    <div class="modal-team" id="modal-team1"></div>
+                    <div class="modal-score" id="modal-score"></div>
+                    <div class="modal-team" id="modal-team2"></div>
+                </div>
+                <div class="match-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Tournament</span>
+                        <span>2026 European Water Polo Championship</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Venue</span>
+                        <span>Belgrade, Serbia</span>
+                    </div>
+                    <div class="detail-row" id="modal-info-row">
+                        <span class="detail-label">Info</span>
+                        <span id="modal-info"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            // Hide all content
+            const contents = document.querySelectorAll('.content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            // Deactivate all tabs
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Show selected content
+            document.getElementById(tabName).classList.add('active');
+
+            // Activate selected tab
+            event.target.classList.add('active');
+        }
+
+        function showMatchDetails(date, team1, team2, score1, score2, stage, info) {
+            const modal = document.getElementById('modal');
+            const winner1 = score1 > score2;
+            const winner2 = score2 > score1;
+
+            document.getElementById('modal-date').textContent = date;
+            document.getElementById('modal-stage').textContent = stage;
+            document.getElementById('modal-team1').textContent = team1;
+            document.getElementById('modal-team2').textContent = team2;
+            document.getElementById('modal-score').textContent = `${score1} - ${score2}`;
+            document.getElementById('modal-info').textContent = info;
+
+            // Highlight winner
+            const team1El = document.getElementById('modal-team1');
+            const team2El = document.getElementById('modal-team2');
+            team1El.className = 'modal-team';
+            team2El.className = 'modal-team';
+            
+            if (winner1) team1El.classList.add('winner');
+            if (winner2) team2El.classList.add('winner');
+
+            modal.classList.add('active');
+        }
+
+        function closeModal(event) {
+            const modal = document.getElementById('modal');
+            modal.classList.remove('active');
+        }
+
+        // Close modal on ESC key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
