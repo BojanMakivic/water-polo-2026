@@ -1,1 +1,1 @@
-https://app.powerbi.com/reportEmbed?reportId=ecc46273-b688-42b2-b4ae-7a95d16eb6b7&autoAuth=true&ctid=730cc58c-5454-4883-bd8d-1105514976b4
+<iframe title="MyVizz" width="1140" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=ecc46273-b688-42b2-b4ae-7a95d16eb6b7&autoAuth=true&ctid=730cc58c-5454-4883-bd8d-1105514976b4" frameborder="0" allowFullScreen="true"></iframe>
